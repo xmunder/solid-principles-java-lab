@@ -75,3 +75,24 @@ Este proyecto implementa los cinco principios SOLID de diseño de software en Ja
 | **Proxy** | Control de acceso a objetos | Validar si un vehículo puede circular |
 
 ---
+
+### 4. **ISP - Interface Segregation Principle**
+
+**Concepto:** No obligar a implementar interfaces que no se necesitan.
+
+**Implementación:**
+```
+- Workable (interfaz)
+- Eatable (interfaz)
+- Bot: solo implementa Workable
+- Developer: implementa Workable y Eatable
+```
+
+**Patrones de Diseño Relacionados:**
+| Patrón | Descripción | Aplicación |
+|--------|-------------|-----------|
+| **Role-Based Interface** | Interfaces específicas por rol | Diferentes interfaces para diferentes roles |
+| **Adapter** | Adapta interfaz existente a la requerida | Adaptar clases anteriores a nuevas interfaces segregadas |
+| **Mixin/Trait** | Combina múltiples interfaces | Comportamientos componibles en clases |
+
+---
