@@ -117,3 +117,61 @@ Este proyecto implementa los cinco principios SOLID de diseño de software en Ja
 | **Service Locator** | Localiza servicios dinámicamente | Registrar diferentes implementaciones de Database |
 
 ---
+
+## Tests Unitarios
+
+El proyecto incluye tests completos para cada principio SOLID:
+
+### Ejecutar todos los tests:
+```bash
+mvn clean test
+```
+
+### Ejecutar tests específicos:
+```bash
+mvn test -Dtest=SRPTest      # Single Responsibility
+mvn test -Dtest=OCPTest      # Open/Closed
+mvn test -Dtest=LSPTest      # Liskov Substitution
+mvn test -Dtest=ISPTest      # Interface Segregation
+mvn test -Dtest=DIPTest      # Dependency Inversion
+```
+
+---
+
+## Ejecutar la Aplicación
+
+### Ejecutar un principio específico:
+
+1. **Editar el pom.xml** para indicar qué principio ejecutar:
+
+```xml
+<configuration>
+    <mainClass>com.example.solid.PRINCIPIO.GoodExample</mainClass>
+</configuration>
+```
+
+Reemplaza `PRINCIPIO` con las siglas en minúsculas del principio que deseas ejecutar:
+- `srp` - Single Responsibility Principle
+- `ocp` - Open/Closed Principle
+- `lsp` - Liskov Substitution Principle
+- `isp` - Interface Segregation Principle
+- `dip` - Dependency Inversion Principle
+
+**Ejemplo para SRP:**
+```xml
+<mainClass>com.example.solid.srp.GoodExample</mainClass>
+```
+
+2. **Ejecutar el comando:**
+
+```bash
+# Compilar
+mvn clean compile
+
+# Ejecutar el programa principal
+mvn exec:java
+
+# Compilar sin ejecutar tests
+mvn clean compile -DskipTests
+```
+---
