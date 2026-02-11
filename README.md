@@ -1,148 +1,127 @@
 # SOLID Principles Lab - Java
 
-## Integrantes del Grupo
+## Integrantes del grupo
 
-- **Cristian Camilo Gómez Fernández**
+- Cristian Camilo Gomez Fernandez
 
----
+## Descripcion del proyecto
 
-## Descripción del Proyecto
+Este proyecto contiene ejemplos practicos de los 5 principios SOLID en Java, con pruebas unitarias en JUnit 5 y construccion con Maven.
 
-Este proyecto implementa los cinco principios SOLID de diseño de software en Java con ejemplos prácticos y pruebas unitarias usando **JUnit 5** y **Maven**.
+## Aclaracion sobre patrones de diseno
 
----
+Para evitar confusion, este README separa:
 
-## Principios SOLID Implementados
+- Patrones de diseno implementados: los que ya aparecen en el codigo actual.
+- Patrones de diseno aplicables: los que se pueden implementar como mejora en los retos.
 
-### 1. **SRP - Single Responsibility Principle**
+## Principios SOLID y patrones
 
-**Concepto:** Cada clase debe tener una única responsabilidad.
+### 1. SRP - Single Responsibility Principle
 
-**Implementación:**
-```
-- Invoice: almacenar datos de facturas
-- InvoicePrinter: imprimir facturas
-- InvoiceDatabaseSaver: guardar facturas en BD
-```
+Implementacion actual:
 
-**Patrones de Diseño Relacionados:**
-| Patrón | Descripción | Aplicación |
-|--------|-------------|-----------|
-| **Facade** | Simplifica interfaces complejas | Agrupar Invoice, Printer y Saver bajo una sola interfaz |
-| **Decorator** | Añade responsabilidades dinámicamente | Decoradores para formateo adicional de facturas |
-| **Strategy** | Diferentes estrategias de impresión | PrinterStrategy con PDF, JSON, XML |
+- `Invoice`: datos y calculo total de factura.
+- `InvoicePrinter`: impresion de factura.
+- `InvoiceDatabaseSaver`: persistencia de factura.
 
----
+Patrones implementados:
 
-### 2. **OCP - Open/Closed Principle**
+- Ningun patron GoF explicito.
 
-**Concepto:** Abierto para extensión, cerrado para modificación.
+Patrones aplicables en retos:
 
-**Implementación:**
-```
-- DiscountStrategy (interfaz)
-- RegularCustomerDiscount (10%)
-- VipCustomerDiscount (20%)
-- DiscountCalculator (usa cualquier estrategia)
-```
+- `Facade`: unificar operaciones de factura en una sola interfaz.
+- `Decorator`: agregar formatos o comportamientos extra de impresion.
 
-**Patrones de Diseño Relacionados:**
-| Patrón | Descripción | Aplicación |
-|--------|-------------|-----------|
-| **Strategy** | Encapsula algoritmos intercambiables | Diferentes estrategias de descuento |
-| **Template Method** | Define estructura, deja detalles a subclases | Base para cálculo de descuentos |
-| **Abstract Factory** | Crear familias de objetos relacionados | Factory para crear diferentes tipos de descuentos |
-| **Decorator** | Añade funcionalidad sin modificar original | Descuentos adicionales (envío, impuestos) |
+### 2. OCP - Open/Closed Principle
 
----
+Implementacion actual:
 
-### 3. **LSP - Liskov Substitution Principle**
+- `DiscountStrategy` (interfaz).
+- `RegularCustomerDiscount` y `VipCustomerDiscount`.
+- `DiscountCalculator` recibe cualquier estrategia.
 
-**Concepto:** Los subtipos deben sustituir a su clase base sin romper el funcionamiento.
+Patrones implementados:
 
-**Implementación:**
-```
-- Drivable (interfaz)
-  - Car: conducible y reabastecible
-  - ElectricCar: solo conducible (respeta LSP)
-```
+- `Strategy` (implementado): el calculo de descuento cambia segun la estrategia inyectada.
 
-**Patrones de Diseño Relacionados:**
-| Patrón | Descripción | Aplicación |
-|--------|-------------|-----------|
-| **Adapter** | Adapta una interfaz a otra esperada | Adaptar vehículos antiguos a Drivable |
-| **Bridge** | Desacopla abstracción de implementación | Separar conducción de tipo de combustible |
-| **Proxy** | Control de acceso a objetos | Validar si un vehículo puede circular |
+Patrones aplicables en retos:
 
----
+- `Abstract Factory`: construir familias de descuentos por tipo de cliente.
+- `Decorator`: combinar descuentos acumulables sin modificar clases existentes.
 
-### 4. **ISP - Interface Segregation Principle**
+### 3. LSP - Liskov Substitution Principle
 
-**Concepto:** No obligar a implementar interfaces que no se necesitan.
+Implementacion actual:
 
-**Implementación:**
-```
-- Workable (interfaz)
-- Eatable (interfaz)
-- Bot: solo implementa Workable
-- Developer: implementa Workable y Eatable
-```
+- `Drivable` y `Refuelable` como contratos separados.
+- `Car` implementa ambos.
+- `ElectricCar` implementa solo `Drivable`.
 
-**Patrones de Diseño Relacionados:**
-| Patrón | Descripción | Aplicación |
-|--------|-------------|-----------|
-| **Role-Based Interface** | Interfaces específicas por rol | Diferentes interfaces para diferentes roles |
-| **Adapter** | Adapta interfaz existente a la requerida | Adaptar clases anteriores a nuevas interfaces segregadas |
-| **Mixin/Trait** | Combina múltiples interfaces | Comportamientos componibles en clases |
+Patrones implementados:
 
----
+- Ningun patron GoF explicito.
 
-### 5. **DIP - Dependency Inversion Principle**
+Patrones aplicables en retos:
 
-**Concepto:** Depender de abstracciones, no de implementaciones concretas.
+- `Adapter`: integrar vehiculos con interfaces heredadas.
+- `Bridge`: separar tipo de propulsion y capacidad de conduccion.
 
-**Implementación:**
-```
-- Database (interfaz)
-- MySQLDatabase (implementación concreta)
-- OrderProcessor: depende de Database, no de MySQLDatabase
-```
+### 4. ISP - Interface Segregation Principle
 
-**Patrones de Diseño Relacionados:**
-| Patrón | Descripción | Aplicación |
-|--------|-------------|-----------|
-| **Dependency Injection** | Inyectar dependencias externamente | Constructor injection en OrderProcessor |
-| **Abstract Factory** | Crear objetos sin especificar clases concretas | Factory para crear diferentes BD |
-| **Repository** | Abstrae acceso a datos | Patrón usado en ordenamiento con BD |
-| **Service Locator** | Localiza servicios dinámicamente | Registrar diferentes implementaciones de Database |
+Implementacion actual:
 
----
+- `Workable` y `Eatable` como interfaces pequenas.
+- `Bot` implementa solo `Workable`.
+- `Developer` implementa `Workable` y `Eatable`.
 
-## Tests Unitarios
+Patrones implementados:
 
-El proyecto incluye tests completos para cada principio SOLID:
+- Ningun patron GoF explicito.
 
-### Ejecutar todos los tests:
+Patrones aplicables en retos:
+
+- `Adapter`: adaptar clases antiguas a interfaces mas especificas.
+
+### 5. DIP - Dependency Inversion Principle
+
+Implementacion actual:
+
+- `Database` (abstraccion).
+- `MySQLDatabase` (implementacion concreta).
+- `OrderProcessor` depende de `Database` via constructor.
+
+Patrones implementados:
+
+- `Dependency Injection` (implementado): `OrderProcessor` recibe la dependencia por constructor.
+
+Patrones aplicables en retos:
+
+- `Abstract Factory`: creacion de repositorios o proveedores de BD por entorno.
+- `Repository`: encapsular acceso a datos de dominio.
+
+## Tests unitarios
+
+Ejecutar todos:
+
 ```bash
 mvn clean test
 ```
 
-### Ejecutar tests específicos:
+Ejecutar por principio:
+
 ```bash
-mvn test -Dtest=SRPTest      # Single Responsibility
-mvn test -Dtest=OCPTest      # Open/Closed
-mvn test -Dtest=LSPTest      # Liskov Substitution
-mvn test -Dtest=ISPTest      # Interface Segregation
-mvn test -Dtest=DIPTest      # Dependency Inversion
+mvn test -Dtest=SRPTest
+mvn test -Dtest=OCPTest
+mvn test -Dtest=LSPTest
+mvn test -Dtest=ISPTest
+mvn test -Dtest=DIPTest
 ```
 
----
+## Ejecutar ejemplos
 
-## Ejecutar la Aplicación
-
-### Ejecutar un principio específico:
-
-1. **Editar el pom.xml** para indicar qué principio ejecutar:
+1. En `pom.xml`, configurar la clase principal:
 
 ```xml
 <configuration>
@@ -150,28 +129,11 @@ mvn test -Dtest=DIPTest      # Dependency Inversion
 </configuration>
 ```
 
-Reemplaza `PRINCIPIO` con las siglas en minúsculas del principio que deseas ejecutar:
-- `srp` - Single Responsibility Principle
-- `ocp` - Open/Closed Principle
-- `lsp` - Liskov Substitution Principle
-- `isp` - Interface Segregation Principle
-- `dip` - Dependency Inversion Principle
+2. Reemplazar `PRINCIPIO` por: `srp`, `ocp`, `lsp`, `isp` o `dip`.
 
-**Ejemplo para SRP:**
-```xml
-<mainClass>com.example.solid.srp.GoodExample</mainClass>
-```
-
-2. **Ejecutar el comando:**
+3. Ejecutar:
 
 ```bash
-# Compilar
 mvn clean compile
-
-# Ejecutar el programa principal
 mvn exec:java
-
-# Compilar sin ejecutar tests
-mvn clean compile -DskipTests
 ```
----
