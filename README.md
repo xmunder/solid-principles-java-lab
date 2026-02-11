@@ -55,3 +55,23 @@ Este proyecto implementa los cinco principios SOLID de diseño de software en Ja
 | **Decorator** | Añade funcionalidad sin modificar original | Descuentos adicionales (envío, impuestos) |
 
 ---
+
+### 3. **LSP - Liskov Substitution Principle**
+
+**Concepto:** Los subtipos deben sustituir a su clase base sin romper el funcionamiento.
+
+**Implementación:**
+```
+- Drivable (interfaz)
+  - Car: conducible y reabastecible
+  - ElectricCar: solo conducible (respeta LSP)
+```
+
+**Patrones de Diseño Relacionados:**
+| Patrón | Descripción | Aplicación |
+|--------|-------------|-----------|
+| **Adapter** | Adapta una interfaz a otra esperada | Adaptar vehículos antiguos a Drivable |
+| **Bridge** | Desacopla abstracción de implementación | Separar conducción de tipo de combustible |
+| **Proxy** | Control de acceso a objetos | Validar si un vehículo puede circular |
+
+---
