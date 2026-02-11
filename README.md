@@ -96,3 +96,24 @@ Este proyecto implementa los cinco principios SOLID de diseño de software en Ja
 | **Mixin/Trait** | Combina múltiples interfaces | Comportamientos componibles en clases |
 
 ---
+
+### 5. **DIP - Dependency Inversion Principle**
+
+**Concepto:** Depender de abstracciones, no de implementaciones concretas.
+
+**Implementación:**
+```
+- Database (interfaz)
+- MySQLDatabase (implementación concreta)
+- OrderProcessor: depende de Database, no de MySQLDatabase
+```
+
+**Patrones de Diseño Relacionados:**
+| Patrón | Descripción | Aplicación |
+|--------|-------------|-----------|
+| **Dependency Injection** | Inyectar dependencias externamente | Constructor injection en OrderProcessor |
+| **Abstract Factory** | Crear objetos sin especificar clases concretas | Factory para crear diferentes BD |
+| **Repository** | Abstrae acceso a datos | Patrón usado en ordenamiento con BD |
+| **Service Locator** | Localiza servicios dinámicamente | Registrar diferentes implementaciones de Database |
+
+---
