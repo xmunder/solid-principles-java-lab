@@ -33,3 +33,25 @@ Este proyecto implementa los cinco principios SOLID de diseño de software en Ja
 | **Strategy** | Diferentes estrategias de impresión | PrinterStrategy con PDF, JSON, XML |
 
 ---
+
+### 2. **OCP - Open/Closed Principle**
+
+**Concepto:** Abierto para extensión, cerrado para modificación.
+
+**Implementación:**
+```
+- DiscountStrategy (interfaz)
+- RegularCustomerDiscount (10%)
+- VipCustomerDiscount (20%)
+- DiscountCalculator (usa cualquier estrategia)
+```
+
+**Patrones de Diseño Relacionados:**
+| Patrón | Descripción | Aplicación |
+|--------|-------------|-----------|
+| **Strategy** | Encapsula algoritmos intercambiables | Diferentes estrategias de descuento |
+| **Template Method** | Define estructura, deja detalles a subclases | Base para cálculo de descuentos |
+| **Abstract Factory** | Crear familias de objetos relacionados | Factory para crear diferentes tipos de descuentos |
+| **Decorator** | Añade funcionalidad sin modificar original | Descuentos adicionales (envío, impuestos) |
+
+---
